@@ -1,12 +1,15 @@
-import { openai } from './api.js'
+import { openai } from "./api.js";
 
 async function deleteFineTune() {
   try {
-    const response = await openai.deleteModel('curie:ft-personal-2023-03-18-18-02-20')
-    console.log('response: ', response)
-  } catch (err) {
-    console.log('err: ', err)
+    const modelId = "ft:gpt-4.1-mini:personal:model-name";
+
+    const response = await openai.models.delete(modelId);
+
+    console.log("Model deleted:", response);
+  } catch (error) {
+    console.error("Delete error:", error.message);
   }
 }
 
-deleteFineTune()
+deleteFineTune();
