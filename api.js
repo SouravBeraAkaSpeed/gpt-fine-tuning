@@ -1,6 +1,9 @@
-import { Configuration, OpenAIApi } from 'openai'
-const openaiApiKey = process.env.OPENAI_KEY
-const configuration = new Configuration({
-  apiKey: openaiApiKey,
-})
-export const openai = new OpenAIApi(configuration)
+import OpenAI from "openai";
+
+if (!process.env.OPENAI_KEY) {
+  throw new Error("OPENAI_KEY environment variable is missing");
+}
+
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_KEY,
+});
